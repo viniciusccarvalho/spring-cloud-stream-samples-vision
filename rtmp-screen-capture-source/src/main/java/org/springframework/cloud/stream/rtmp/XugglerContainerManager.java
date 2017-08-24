@@ -20,7 +20,6 @@ package org.springframework.cloud.stream.rtmp;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 import com.xuggle.mediatool.IMediaReader;
 import com.xuggle.mediatool.MediaListenerAdapter;
@@ -46,7 +45,7 @@ public class XugglerContainerManager implements SmartLifecycle {
 
 	private ExecutorService executorService;
 
-	private RTMPSourceProperties properties;
+	private RtmpSourceProperties properties;
 
 	private XugglerContainerRunner runner;
 
@@ -58,11 +57,11 @@ public class XugglerContainerManager implements SmartLifecycle {
 		this.imageEmitter = imageEmitter;
 	}
 
-	public XugglerContainerManager(RTMPSourceProperties properties){
+	public XugglerContainerManager(RtmpSourceProperties properties){
 		this(properties,Executors.newFixedThreadPool(2));
 	}
 
-	public XugglerContainerManager(RTMPSourceProperties properties, ExecutorService executorService) {
+	public XugglerContainerManager(RtmpSourceProperties properties, ExecutorService executorService) {
 		this.executorService = executorService;
 		this.properties = properties;
 	}

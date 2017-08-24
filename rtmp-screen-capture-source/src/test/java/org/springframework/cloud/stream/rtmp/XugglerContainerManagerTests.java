@@ -26,7 +26,7 @@ public class XugglerContainerManagerTests {
 
 	@Test
 	public void testFailedConnection() throws Exception{
-		RTMPSourceProperties properties = new RTMPSourceProperties();
+		RtmpSourceProperties properties = new RtmpSourceProperties();
 		properties.setEndpoint("rtmp://localhost:1935/show/stream");
 		XugglerContainerManager containerManager = new XugglerContainerManager(properties);
 		containerManager.start();

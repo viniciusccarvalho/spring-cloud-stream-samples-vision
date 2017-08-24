@@ -23,7 +23,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author Vinicius Carvalho
  */
 @ConfigurationProperties("rtmp")
-public class RTMPSourceProperties {
+public class RtmpSourceProperties {
 
 	private String endpoint;
 

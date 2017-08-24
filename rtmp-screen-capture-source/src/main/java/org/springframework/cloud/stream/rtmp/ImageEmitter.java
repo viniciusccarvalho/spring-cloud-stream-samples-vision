@@ -44,7 +44,7 @@ public class ImageEmitter {
 	private Source source;
 
 	@Autowired
-	private RTMPSourceProperties properties;
+	private RtmpSourceProperties properties;
 
 	private Logger logger = LoggerFactory.getLogger(ImageEmitter.class);
 

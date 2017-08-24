@@ -13,13 +13,13 @@ import org.springframework.messaging.converter.MessageConverter;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
-@EnableConfigurationProperties(RTMPSourceProperties.class)
+@EnableConfigurationProperties(RtmpSourceProperties.class)
 @EnableAsync
 @EnableBinding(Source.class)
 public class RtmpScreenCaptureSourceApplication {
 
 	@Autowired
-	private RTMPSourceProperties properties;
+	private RtmpSourceProperties properties;
 
 	public static void main(String[] args) {
 		SpringApplication.run(RtmpScreenCaptureSourceApplication.class, args);
