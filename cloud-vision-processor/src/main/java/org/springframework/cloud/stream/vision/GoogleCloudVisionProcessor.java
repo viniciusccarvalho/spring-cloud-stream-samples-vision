@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.imageio.ImageIO;
+
 import com.google.cloud.vision.v1.AnnotateImageRequest;
 import com.google.cloud.vision.v1.AnnotateImageResponse;
 import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
@@ -70,7 +72,7 @@ public class GoogleCloudVisionProcessor {
 		ByteString imgBytes = ByteString.copyFrom(imageData.getData());
 		Image img = Image.newBuilder().setContent(imgBytes).build();
 		List<AnnotateImageRequest> requests = new ArrayList<>();
-		Feature feature = Feature.newBuilder().setType(Feature.Type.LABEL_DETECTION).build();
+		Feature feature = Feature.newBuilder().setType(Feature.Type.FACE_DETECTION).build();
 		AnnotateImageRequest request = AnnotateImageRequest.newBuilder()
 				.addFeatures(feature)
 				.setImage(img)
@@ -80,10 +82,15 @@ public class GoogleCloudVisionProcessor {
 		BatchAnnotateImagesResponse response = vision.batchAnnotateImages(requests);
 		logger.info("Response received");
 		List<AnnotateImageResponse> responses = response.getResponsesList();
+
 		for (AnnotateImageResponse res : responses) {
 			if (res.hasError()) {
 				System.out.printf("Error: %s\n", res.getError().getMessage());
 				return;
+			}
+			for (EntityAnnotation annotation : res.getLabelAnnotationsList()) {
+				annotation.getAllFields().forEach((k, v)->
+						System.out.printf("%s : %s\n", k, v.toString()));
 			}
 
 			long facefound = res.getLabelAnnotationsList().stream().filter(entityAnnotation -> {return entityAnnotation.getDescription().equals("face");}).count();

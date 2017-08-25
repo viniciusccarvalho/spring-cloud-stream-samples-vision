@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.springframework.cloud.stream.vision</groupId>
-	<artifactId>google-cloud-vision-processor</artifactId>
+	<artifactId>cloud-vision-processor</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>google-cloud-vision-processor</name>
+	<name>cloud-vision-processor</name>
 	<description>Demo project for Spring Cloud Stream</description>
 
 	<parent>
