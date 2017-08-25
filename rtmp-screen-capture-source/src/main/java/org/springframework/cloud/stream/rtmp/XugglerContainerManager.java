@@ -169,7 +169,6 @@ public class XugglerContainerManager implements SmartLifecycle {
 		}
 		@Override
 		public void onVideoPicture(IVideoPictureEvent event) {
-			logger.info("Frame received at timestamp: {}",event.getTimeStamp());
 			if (event.getStreamIndex() != mVideoStreamIndex) {
 				// if the selected video stream id is not yet set, go ahead an
 				// select this lucky video stream
