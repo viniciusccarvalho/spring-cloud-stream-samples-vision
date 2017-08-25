@@ -18,35 +18,21 @@
 package org.springframework.cloud.stream.vision;
 
 import ai.projectoxford.face.Face;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.spring.cloud.stream.rtmp.ImageData;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.cloud.stream.messaging.Sink;
-import org.springframework.stereotype.Component;
 
 /**
  * @author Vinicius Carvalho
  */
-@Component
-public class CloudVisionProcessor {
+public class OxfordVisionProcessor extends FaceDetector {
 
-	@Autowired
-	private Face faceClient;
+	private final Face face;
 
-	private Logger logger = LoggerFactory.getLogger(CloudVisionProcessor.class);
-
-	@StreamListener(Sink.INPUT)
-	public void onImage(ImageData imageData){
-		logger.info("Payload received");
-		faceClient.detect(false,false,imageData.getData().array(),"age").subscribe(faceResponse -> {
-			if(faceResponse != null){
-				System.out.println("Found a face");
-			}
-		});
-
+	public OxfordVisionProcessor(Face face) {
+		this.face = face;
 	}
 
+	@Override
+	public void process(ImageData imageData) {
+
+	}
 }
