@@ -17,6 +17,8 @@
 
 package org.springframework.cloud.stream.rtmp;
 
+import java.io.File;
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -25,19 +27,40 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("rtmp")
 public class RtmpSourceProperties {
 
-	private String endpoint;
-
 	private Integer intervalBetweenFrames = 1;
 
 	private String imageFormat = "png";
 
-	public String getEndpoint() {
-		return endpoint;
+	private Integer poolSize = 2;
+
+	private boolean saveSnapshots = false;
+
+	private String snapshotFolder = System.getProperty("java.io.tmpdir");
+
+	public boolean isSaveSnapshots() {
+		return saveSnapshots;
 	}
 
-	public void setEndpoint(String endpoint) {
-		this.endpoint = endpoint;
+	public void setSaveSnapshots(boolean saveSnapshots) {
+		this.saveSnapshots = saveSnapshots;
 	}
+
+	public String getSnapshotFolder() {
+		return snapshotFolder;
+	}
+
+	public void setSnapshotFolder(String snapshotFolder) {
+		this.snapshotFolder = snapshotFolder;
+	}
+
+	public Integer getPoolSize() {
+		return poolSize;
+	}
+
+	public void setPoolSize(Integer poolSize) {
+		this.poolSize = poolSize;
+	}
+
 
 	public Integer getIntervalBetweenFrames() {
 		return intervalBetweenFrames;

@@ -17,20 +17,24 @@
 
 package org.springframework.cloud.stream.rtmp;
 
-import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Vinicius Carvalho
  */
-public class XugglerContainerManagerTests {
+@RestController
+public class FrameCapturerController {
 
-	@Test
-	public void testFailedConnection() throws Exception{
-		RtmpSourceProperties properties = new RtmpSourceProperties();
-		properties.setEndpoint("rtmp://localhost:1935/show/stream");
-		XugglerContainerManager containerManager = new XugglerContainerManager(properties);
-		containerManager.start();
-		Thread.sleep(2000);
-		containerManager.stop();
+	@Autowired
+	private JavaCvFrameCapturer frameCapturer;
+
+	@PostMapping
+	public ResponseEntity<String> capture(@RequestBody CaptureRequest request){
+		frameCapturer.capture(request.getUrl());
+		return ResponseEntity.ok("ok");
 	}
 }

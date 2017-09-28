@@ -5,6 +5,7 @@
   "fields" : [
     { "name" : "extension", "type" : ["string","null"]},
     { "name" : "timestamp", "type" : ["long","null"]},
-    { "name" : "data", "type" : "bytes"}
+    { "name" : "data", "type" : "bytes"},
+    { "name" : "id", "type" : "string"}
   ]
 }

@@ -26,10 +26,11 @@ public class RtmpScreenCaptureSourceApplication {
 	}
 
 	@Bean
-	public XugglerContainerManager xugglerContainerManager(ImageEmitter imageEmitter){
-		XugglerContainerManager xugglerContainerManager = new XugglerContainerManager(properties);
-		xugglerContainerManager.setImageEmitter(imageEmitter);
-		return xugglerContainerManager;
+	public JavaCvFrameCapturer frameCapturer(ImageEmitter emitter) {
+		JavaCvFrameCapturer frameCapturer = new JavaCvFrameCapturer();
+		frameCapturer.setProperties(properties);
+		frameCapturer.setImageEmitter(emitter);
+		return frameCapturer;
 	}
 
 	@Bean
